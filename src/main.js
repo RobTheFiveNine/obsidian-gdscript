@@ -15,7 +15,7 @@ export default class GdscriptSyntaxPlugin extends Plugin {
                         { regex: /\b-?\d+\b/, token: "number" },
                         { regex: /#.+/, token: 'comment' },
                         { regex: /\s*(@onready|@export)\b/, token: 'keyword' },
-                        { regex: /\b(?:and|as|assert|break|breakpoint|const|continue|elif|else|enum|for|if|in|is|master|mastersync|match|not|null|or|pass|preload|puppet|puppetsync|remote|remotesync|return|self|setget|static|tool|var|while|yield)\b/, token: 'keyword' },
+                        { regex: /\b(?:and|as|assert|await|break|breakpoint|const|continue|elif|else|enum|for|if|in|is|master|mastersync|match|not|null|or|pass|preload|puppet|puppetsync|remote|remotesync|return|self|setget|static|tool|var|while|yield)\b/, token: 'keyword' },
                         { regex: /[()\[\]{},]/, token: "meta" },
 
                         // The words following func, class_name and class should be highlighted as attributes,

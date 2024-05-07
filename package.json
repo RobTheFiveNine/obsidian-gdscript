@@ -2,7 +2,7 @@
   "name": "obsidian-gdscript",
   "description": "Adds live GDScript syntax highlighting to code blocks in the Obsidian editor.",
   "main": "src/main.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "RobTheFiveNine",
   "type": "module",
   "repository": {
