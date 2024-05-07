@@ -2,6 +2,8 @@
 
 This plugin for Obsidian provides live syntax highlighting for GDScript (the language used in [Godot](https://godotengine.org/)).
 
+To use the plugin, install it, and then add a code block with the word `gdscript` immediately after the three backticks.
+
 An example of the highlighting can be seen below:
 
 ![](.github/images/example.png)
