@@ -1,10 +1,10 @@
 {
     "author":"RobTheFiveNine",
-    "description": "Adds live GDScript syntax highlighting to code blocks in the Obsidian editor.",
+    "description": "Add live GDScript syntax highlighting to code blocks.",
     "fundingUrl": "https://github.com/sponsors/RobTheFiveNine",
     "id": "gdscript-syntax-highlighting",
     "isDesktopOnly": false,
     "minAppVersion": "1.5.12",
     "name": "GDScript Syntax Highlighting",
-    "version": "1.0.1"
+    "version": "1.0.2"
 }
