@@ -1,5 +1,4 @@
 # Obsidian GDScript Syntax Highlighting Plugin
-
 This plugin for Obsidian provides live syntax highlighting for GDScript (the language used in [Godot](https://godotengine.org/)).
 
 To use the plugin, install it, and then add a code block with the word `gdscript` immediately after the three backticks.
@@ -8,8 +7,13 @@ An example of the highlighting can be seen below:
 
 ![](.github/images/example.png)
 
-## Setup (manual)
-The plugin is going to be submitted to the Obsidian team to hopefully be approved as a community plugin, but for now, if you wish to install the plugin manually.
+
+## Setup
+This plugin is now part of the verified community plugins! To install, just open the community plugins window and search for "GDScript Syntax Highlighting" and hit the install button.
+
+
+## Setup (Manual Method)
+If you wish to install the plugin manually:
 
 1. Navigate to the vault you wish to install it in using your file explorer
 2. Navigate into the `.obisidian` directory, and in there, go into the `plugins` directory
