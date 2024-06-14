@@ -9,7 +9,7 @@ export default class GdscriptSyntaxPlugin extends Plugin {
         // onload, so continue to try and define the language until it is.
         const setupInterval = setInterval(() => {
             if (CodeMirror && CodeMirror.defineSimpleMode) {
-                CodeMirror.defineSimpleMode("gdscript", {
+                const mode = {
                     start: [
                         { regex: /\b0x[0-9a-f]+\b/i, token: "number" },
                         { regex: /\b-?\d+\b/, token: "number" },
@@ -37,7 +37,11 @@ export default class GdscriptSyntaxPlugin extends Plugin {
                     definition: [
                         { regex: /(\w+)/, token: "attribute", pop: true }
                     ]
-                })
+                };
+
+                CodeMirror.defineSimpleMode('gdscript', mode);
+                CodeMirror.defineSimpleMode('GDScript', mode);
+                CodeMirror.defineSimpleMode('GDscript', mode);
 
                 self.app.workspace.iterateAllLeaves((leaf) => {
                     leaf.rebuildView();
@@ -50,5 +54,7 @@ export default class GdscriptSyntaxPlugin extends Plugin {
 
     onunload() {
         delete CodeMirror.modes['gdscript'];
+        delete CodeMirror.modes['GDScript'];
+        delete CodeMirror.modes['GDscript'];
     }
 }
