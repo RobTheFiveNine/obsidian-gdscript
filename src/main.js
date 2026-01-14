@@ -36,6 +36,19 @@ export default class GdscriptSyntaxPlugin extends Plugin {
                         { regex: /\+|\*|-|\/|:=|>|<|\^|&|\||%|~|=/, token: 'operator' },
                         { regex: /\b(?:false|true)\b/, token: 'number' },
                         { regex: /\b[A-Z][A-Z_\d]*\b/, token: 'operator' },
+
+                        // Function calls on objects: object.doSomething()
+                        {
+                            regex: /(\.)([A-Za-z_]\w*)(?=\s*\()/,
+                            token: ['operator', 'variable'],
+                        },
+
+                        // Normal function calls: doSomething()
+                        {
+                            regex: /[A-Za-z_]\w*(?=\s*\()/,
+                            token: 'variable',
+                        },
+
                         {
                             regex: /[A-Za-z_]\w*/,
                             token: (match) => {
