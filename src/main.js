@@ -9,27 +9,40 @@ export default class GdscriptSyntaxPlugin extends Plugin {
         // onload, so continue to try and define the language until it is.
         const setupInterval = setInterval(() => {
             if (CodeMirror && CodeMirror.defineSimpleMode) {
+                const KEYWORDS = new Set([
+                    'and','as','assert','await','break','breakpoint','const','continue','elif','else','enum',
+                    'for','if','in','master','mastersync','match','not','null','or','pass','preload',
+                    'puppet','puppetsync','remote','remotesync','return','self','setget','static','tool',
+                    'var','while','yield'
+                ]);
+
                 const mode = {
                     start: [
-                        { regex: /\b0x[0-9a-f]+\b/i, token: "number" },
-                        { regex: /\b-?\d+\b/, token: "number" },
+                        { regex: /\b0x[0-9a-f]+\b/i, token: 'number' },
+                        { regex: /\b-?\d+\b/, token: 'number' },
                         { regex: /#.+/, token: 'comment' },
                         { regex: /\s*(@onready|@export)\b/, token: 'keyword' },
-                        { regex: /\b(?:and|as|assert|await|break|breakpoint|const|continue|elif|else|enum|for|if|in|master|mastersync|match|not|null|or|pass|preload|puppet|puppetsync|remote|remotesync|return|self|setget|static|tool|var|while|yield)\b/, token: 'keyword' },
-                        { regex: /[()\[\]{},]/, token: "meta" },
+                        { regex: /[()\[\]{},]/, token: 'meta' },
 
                         // The words following func, class_name and class should be highlighted as attributes,
                         // so push onto the definition stack
-                        { regex: /\b(func|class_name|class|extends|signal|is)\b/, token: "keyword", push: "definition" },
+                        { regex: /\b(func|class_name|class|extends|signal|is)\b/, token: 'keyword', push: 'definition' },
 
-                        { regex: /@?(?:("|')(?:(?!\1)[^\n\\]|\\[\s\S])*\1(?!"|')|"""(?:[^\\]|\\[\s\S])*?""")/, token: "string" },
+                        { regex: /@?(?:("|')(?:(?!\1)[^\n\\]|\\[\s\S])*\1(?!"|')|"""(?:[^\\]|\\[\s\S])*?""")/, token: 'string' },
                         { regex: /\$[\w\/]+\b/, token: 'variable' },
                         { regex: /\:[\s]*$/, token: 'operator' },
                         { regex: /\:[ ]*/, token: 'meta', push: 'var_type' },
                         { regex: /\->[ ]*/, token: 'operator', push: 'definition' },
-                        { regex: /\+|\*|-|\/|:=|>|<|\^|&|\||%|~|=/, token: "operator" },
+                        { regex: /\+|\*|-|\/|:=|>|<|\^|&|\||%|~|=/, token: 'operator' },
                         { regex: /\b(?:false|true)\b/, token: 'number' },
                         { regex: /\b[A-Z][A-Z_\d]*\b/, token: 'operator' },
+                        {
+                            regex: /[A-Za-z_]\w*/,
+                            token: (match) => {
+                                const word = Array.isArray(match) ? match[0] : match;
+                                return KEYWORDS.has(word) ? 'keyword' : null;
+                            }
+                        },
                     ],
                     var_type: [
                         { regex: /(\w+)/, token: 'attribute', pop: true },
