@@ -31,6 +31,7 @@ export default class GdscriptSyntaxPlugin extends Plugin {
                         { regex: /@?(?:("|')(?:(?!\1)[^\n\\]|\\[\s\S])*\1(?!"|')|"""(?:[^\\]|\\[\s\S])*?""")/, token: 'string' },
                         { regex: /\$[\w\/]+\b/, token: 'variable' },
                         { regex: /\:[\s]*$/, token: 'operator' },
+                        { regex: /:=/, token: 'operator' },
                         { regex: /\:[ ]*/, token: 'meta', push: 'var_type' },
                         { regex: /\->[ ]*/, token: 'operator', push: 'definition' },
                         { regex: /\+|\*|-|\/|:=|>|<|\^|&|\||%|~|=/, token: 'operator' },
